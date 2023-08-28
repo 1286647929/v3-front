@@ -71,8 +71,15 @@ const msg = ref('')
 			></el-input>
 		</div>
 		<div class="header-iconbtns">
-			<div>消息</div>
-			<div>{{ t('Registration/Login') }}</div>
+			<div class="header-iconbtns-iconbtn header-iconbtns-chatroom">
+				<span>大厅</span>
+			</div>
+			<div class="header-iconbtns-iconbtn header-iconbtns-msg">
+				<span>消息</span>
+			</div>
+			<div class="header-iconbtns-iconbtn header-iconbtns-login">
+				<span>{{ t('Registration/Login') }}</span>
+			</div>
 			<Dropdown />
 		</div>
 	</div>
@@ -132,6 +139,7 @@ const msg = ref('')
 
 		:deep(.el-input__wrapper) {
 			border-radius: 25px;
+			background-color: #f0f0f0;
 		}
 	}
 
@@ -140,6 +148,39 @@ const msg = ref('')
 		display: flex;
 		text-align: center;
 		justify-content: right;
+
+		.header-iconbtns-iconbtn {
+			margin: 0 20px;
+			background-position: top;
+			background-repeat: no-repeat;
+			background-size: contain;
+			padding-top: 30px;
+			color: #666;
+			font-size: 12px;
+			text-align: center;
+			line-height: 26px;
+			display: block;
+			width: 36px;
+			white-space: nowrap;
+			position: relative;
+		}
+
+		.header-iconbtns-chatroom {
+			background-image: url(https://asset.tuwan.com/static/img/chaticon.807cd48f.gif);
+			color: #fa6543;
+			font-size: 14px;
+		}
+
+		.header-iconbtns-msg {
+			background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAZCAYAAADJ9/UkAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAAsSAAALEgHS3X78AAADGElEQVRIx7XWW4hVZRTA8d85DoOUgxmTUWRUjgSBdvECXQwtK0jywZBqwhCmFoQESS/2ElYIXSiLwGiF0MVBKyqKbig2D5GDFN2MICi6kOmDMTbkYFHYw94HTqezz8w0tl725luX/7e/vdb6Vk2LREQ3bsTNuBhnoEt7+R0/4xNsxxuZedwEpdYCvgQ7cADPYigzD3UKEBFzsBx3YwxrM/O7ScEjYnkJ3pCZOya6+yb/Ou7BBlyXmfsnBI+IufgQazLzg8mCWzZxKzbjosw80sm2Xj6fxENTBUNmDuI93DeebT0iFmIBtk4V3CT347aImD3el68tNpx/nChyZh7E+1g1HvwK7DqBX92Qd3EVRETbUu3CHHz9P8C/xfryfV9EHMMzeLHRC+rozcxf23lHxKxO0SOiFhGnVKhH0F2+L1XkwXq8HREnNeD1DvEPR8S0Dvqz8EWFrobjkJljmbkLl+EXPNeAj0ZET0WAL7GkA/x6fFyh68Xh5oXM/At3YH5ErOjCD+jDp20CPICXI2IT9uIQjuI0rFbU8jUV8HmK//4PycxjEfEYBuoYxqXtvDPzVfTjarxeBhvFR4oqWZaZn1XAV2J3hW4PLu/CO9ioosmUXW9SnS8i+rBQcTO2kwM4vY630BMRqycD6ACehqexJTPHKsxqUG9Kgm0RceUUwTU8gpPxRAfTs/FTvTzaYdyEnRFx538E92IQy7AqM//sYH4t9rYOE+cqkmFzZm6rgPTgHEUD6caZWIE12ImNmflbh01Ox34M1Noo+xQJ1p+ZQ03r3eWRrsOPaFxEB7EPg+NNMGU+vKD43bf8q7tl5jeK8toeEac2qbbifMzLzAWZuSgzFyluriNaGkoF+CXMxgAVg2FmDkXEK3gc6yJiiaKZXJCZR1vMp2MxHoyI78uNjODezGy+sB7FLNzQqIKaComIGfgKt5dHPZyZT3Wwn4nzMFMx9fZn5uJSt1QxH87PzJGGTyW8dFpZHvcMzB1vJmvyq+FzPKyYDfcoBtM3m+1qEwh0F0Yz8/mJgJv8LsRrigtmU2ZuabX5G/Y7EiUPHQ0gAAAAAElFTkSuQmCC);
+			background-size: 31px 25px;
+		}
+
+		.header-iconbtns-login {
+			width: auto;
+			background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAaCAYAAABCfffNAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAAsSAAALEgHS3X78AAACGklEQVRIx63VS4iPURjH8c/8k3KXBYmIhZqsZIkNycL9lstKgyOFhGylpJQIuT2hbNQgmQixmNlQFmTjurBxWVnIbVwKi/eUof/7/79j5rc87znP932e5/ye06KJUkpTsRHzMBm/8BK3cCYinjSL0dIg+CAcxlIcwzU8y5+nYAG24Qp2RsTXXkFSSoNxG2+xPiI+luwbiXMYhvkR8b3evloJ/EgGrCoDQES8x3J8xMHKmaSUpuMqWiPiU7N65zPD8QKz6/WoXibrcLQqIGf0ASexoWq55uJGVUAPdeSzlSATFVe0t3qGCVUhA/HjPyAUHqoEeanwQW/VildVITex8D8gixXeqgQ5j60ppaFVo6eURmATztb7Xub4wCisjIhfGiilVFOMltcRsaVqJrAdo3E5j44ywMgMGIJdZfuaDchDWKIw2jU8zWemKHqwGZewu9GALMtERHTjNDqxFw/RjS94lNfuox3fGpW0rCezcCD35SK6chbvFD4aj3GYiWV5bT8uRMTPhpBcouOYhR243qzx+dwM7MuVWRsRb+pC8htyS2GojRHxpVnwf0AtiguzO4M6/4LkDe34jLYqf98kqw6siIgu/jR+s2K4beoLACLiLtbgQkppLNSys/contnvfQH0AN1RTI4TMACrcS8iHvcHoIf24kVKaVoNixT96Fdlc55CWw3T8KC/IVk3MKeGMXjTx2Bleo5JvwEV87OoX3F1QgAAAABJRU5ErkJggg==);
+			background-size: 25px 26px;
+		}
 	}
 }
 </style>
