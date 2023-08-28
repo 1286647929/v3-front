@@ -2,17 +2,27 @@
 	<div
 		style="
 			width: 100%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
+			background-color: #faaca8;
+			background-image: linear-gradient(19deg, #faaca8 0%, #ddd6f3 100%);
+			height: 350px;
 		"
 	>
-		<div style="width: 50%">
-			<el-carousel :interval="5000" arrow="always">
-				<el-carousel-item v-for="item in 4" :key="item">
-					<h3 text="2xl">{{ item }}</h3>
-				</el-carousel-item>
-			</el-carousel>
+		<div
+			style="
+				width: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				margin-top: 18px;
+			"
+		>
+			<div style="width: 50%">
+				<el-carousel :interval="5000" arrow="always">
+					<el-carousel-item v-for="item in 4" :key="item">
+						<h3 text="2xl">{{ item }}</h3>
+					</el-carousel-item>
+				</el-carousel>
+			</div>
 		</div>
 	</div>
 </template>

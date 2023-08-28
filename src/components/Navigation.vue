@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { getRoutes } from '@/plugins/router'
 import { SwitchIcon } from 'vue-dark-switch'
+import { Search } from '@element-plus/icons-vue'
 
 const { t } = useI18n()
 
@@ -26,46 +27,54 @@ const handleSelect = (key: string, keyPath: string[]) => {
 }
 
 const active = ref('0')
+
+const msg = ref('')
 </script>
 
 <template>
-	<!--			<li v-for="r of routes" :key="r.path" class="hidden !block">-->
-	<!--				<RouterLink class="rounded-lg px-3 py-2" :to="r.path">-->
-	<!--					{{ t(r.name) }}-->
-	<!--				</RouterLink>-->
-	<!--			</li>-->
-	<div style="margin-top: 20px; flex: 1">
-		<el-menu
-			:default-active="active"
-			mode="horizontal"
-			:ellipsis="false"
-			:router="true"
-			@select="handleSelect"
-		>
-			<span class="h-10 w-10 flex items-center justify-center">
-				<SwitchIcon unmount-persets />
-			</span>
-			<div>
-				<el-image
-					style="margin-left: 80px; margin-bottom: 12px; margin-right: 10px"
-					src="https://res.tuwan.com/templet/play/index/images/yuewanlogo3.png"
-				></el-image>
-			</div>
-			<el-menu-item
-				v-for="(r, index) of routes"
-				:key="r.path"
-				:index="index.toString()"
-				:route="r.path"
-				class="menu_header"
+	<div class="header">
+		<div class="header-switch">
+			<SwitchIcon unmount-persets />
+		</div>
+		<div class="header-logo">
+			<el-image
+				style="width: 188px; height: 49px"
+				src="https://res.tuwan.com/templet/play/index/images/yuewanlogo3.png"
+			></el-image>
+		</div>
+		<div class="header-navtabs">
+			<el-menu
+				:default-active="active"
+				active-text-color="#fa6543"
+				mode="horizontal"
+				:router="true"
+				@select="handleSelect"
 			>
-				{{ t(r.name) }}
-			</el-menu-item>
-			<div class="flex-grow" />
-			<el-menu-item>{{ t('Registration/Login') }}</el-menu-item>
-			<div class="drop">
-				<Dropdown />
-			</div>
-		</el-menu>
+				<el-menu-item
+					v-for="(r, index) of routes"
+					:key="r.path"
+					:index="index.toString()"
+					:route="r.path"
+					class="menu_header"
+				>
+					{{ t(r.name) }}
+				</el-menu-item>
+			</el-menu>
+		</div>
+		<div class="header-searchbox">
+			<el-input
+				v-model="msg"
+				class="header-searchbox--input"
+				type="text"
+				:suffix-icon="Search"
+				placeholder="搜索房间/用户昵称"
+			></el-input>
+		</div>
+		<div class="header-iconbtns">
+			<div>消息</div>
+			<div>{{ t('Registration/Login') }}</div>
+			<Dropdown />
+		</div>
 	</div>
 </template>
 
@@ -81,22 +90,56 @@ const active = ref('0')
 }
 
 .menu_header {
-	margin-left: 15px;
+	width: 20px;
+	margin-left: 25px;
+	font-size: 18px;
 }
-//
-//.el-carousel__item h3 {
-//	color: #475669;
-//	opacity: 0.75;
-//	line-height: 300px;
-//	margin: 0;
-//	text-align: center;
-//}
-//
-//.el-carousel__item:nth-child(2n) {
-//	background-color: #99a9bf;
-//}
-//
-//.el-carousel__item:nth-child(2n + 1) {
-//	background-color: #d3dce6;
-//}
+
+.el-menu-item:hover {
+	outline: 0 !important;
+	color: #fa6543 !important;
+	background: #ffffff !important;
+}
+
+.el-menu-item.is-active {
+	color: #fa6543 !important;
+	background: #ffffff !important;
+}
+
+.header {
+	margin-top: 10px;
+	text-align: center;
+	display: flex;
+
+	.header-switch {
+		display: flex;
+	}
+
+	.header-logo {
+		flex: 0.15;
+		text-align: right;
+	}
+
+	.header-navtabs {
+		flex: 0.3;
+	}
+
+	.header-searchbox {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex: 0.1;
+
+		:deep(.el-input__wrapper) {
+			border-radius: 25px;
+		}
+	}
+
+	.header-iconbtns {
+		flex: 0.5;
+		display: flex;
+		text-align: center;
+		justify-content: right;
+	}
+}
 </style>
