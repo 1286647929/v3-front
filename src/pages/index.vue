@@ -122,6 +122,20 @@
 				</div>
 				<div class="index-content-box recommend">
 					<div class="index-content-box-title">富豪推荐</div>
+					<div class="index-content-box-card">
+						<el-carousel
+							height="102px"
+							:interval="4000"
+							type="card"
+							trigger="click"
+						>
+							<el-carousel-item v-for="item in 6" :key="item">
+								<el-image
+									src="https://ucavatar2.tuwan.com/data/avatar/003/90/87/14_avatar_middle.jpg?random=1693337148&amp;x-oss-process=image/resize,m_fill,h_120,w_120"
+								/>
+							</el-carousel-item>
+						</el-carousel>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -243,7 +257,29 @@ const testhandler = (id) => {
 	white-space: nowrap;
 }
 
-.index-content-box .recommend {
-	margin: 0 auto;
+.index-content-box.recommend {
+	width: 100%;
+	margin: 0 80px;
 }
+
+.index-content-box-card {
+	text-align: center;
+	height: 102px;
+}
+
+//.el-carousel__item h3 {
+//	color: #475669;
+//	opacity: 0.75;
+//	line-height: 200px;
+//	margin: 0;
+//	text-align: center;
+//}
+//
+//.el-carousel__item:nth-child(2n) {
+//	background-color: #99a9bf;
+//}
+//
+//.el-carousel__item:nth-child(2n + 1) {
+//	background-color: #d3dce6;
+//}
 </style>
