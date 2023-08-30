@@ -36,8 +36,8 @@
     "@iconify-json/subway": "^1.1.7",
     "@intlify/unplugin-vue-i18n": "^0.12.3",
     "@types/ityped": "^1.0.1",
-    "@types/node": "^18.17.11",
-    "@typescript-eslint/parser": "^6.4.1",
+    "@types/node": "^18.17.12",
+    "@typescript-eslint/parser": "^6.5.0",
     "@unocss/eslint-config": "^0.55.3",
     "@unocss/reset": "^0.55.3",
     "@unocss/transformer-directives": "^0.55.3",
@@ -45,9 +45,9 @@
     "@vitejs/plugin-legacy": "^4.1.1",
     "@vitejs/plugin-vue": "^4.3.3",
     "@vitejs/plugin-vue-jsx": "^3.0.2",
-    "@vueuse/components": "^10.4.0",
-    "@vueuse/core": "^10.4.0",
-    "@vueuse/integrations": "^10.4.0",
+    "@vueuse/components": "^10.4.1",
+    "@vueuse/core": "^10.4.1",
+    "@vueuse/integrations": "^10.4.1",
     "axios": "^1.5.0",
     "browserslist": "^4.21.10",
     "c8": "^8.0.1",
@@ -126,5 +126,13 @@
     "@element-plus/icons-vue": "^2.1.0",
     "element-plus": "^2.3.9",
     "naive-ui": "^2.34.4"
-  }
+  },
+	"browserslist": [
+		">= 0.25%",
+		"last 2 versions",
+		"not dead",
+		"not ie <= 11",
+		"Android >= 4.0",
+		"iOS >= 8"
+	]
 }
