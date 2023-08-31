@@ -124,8 +124,9 @@
 					<div class="index-content-box-title">富豪推荐</div>
 					<div class="index-content-box-card">
 						<el-carousel
-							height="102px"
+							height="150px"
 							:interval="4000"
+							indicator-position="none"
 							type="card"
 							trigger="click"
 						>
@@ -133,6 +134,9 @@
 								<el-image
 									src="https://ucavatar2.tuwan.com/data/avatar/003/90/87/14_avatar_middle.jpg?random=1693337148&amp;x-oss-process=image/resize,m_fill,h_120,w_120"
 								/>
+								<el-text style="display: block; color: #fff" size="large"
+									>昵称</el-text
+								>
 							</el-carousel-item>
 						</el-carousel>
 					</div>
@@ -264,7 +268,6 @@ const testhandler = (id) => {
 
 .index-content-box-card {
 	text-align: center;
-	height: 102px;
 }
 
 //.el-carousel__item h3 {
