@@ -1,6 +1,7 @@
 <template>
-	<div class="index p-flex p-width-100 p-flex-dir-col p-flex-ac">
+	<div class="p-flex p-width-100 p-flex-dir-col p-flex-ac index">
 		<div class="index-content">
+			<!--			广告栏-->
 			<el-carousel
 				height="264px"
 				:interval="5000"
@@ -17,6 +18,7 @@
 					</a>
 				</el-carousel-item>
 			</el-carousel>
+			<!--			热门游戏、推荐-->
 			<div class="p-flex" style="padding: 30px 0">
 				<div class="index-content-box hotgames">
 					<div class="p-flex p-flex-ac">
@@ -30,93 +32,16 @@
 					</div>
 					<div class="p-flex index-content-box-list gamelist">
 						<a
-							href="https://y.tuwan.com/roomlist?navid=7"
-							target="_blank"
-							class="p-flex p-flex-dir-col game-item p-flex-center"
-							data-navid="7"
+							v-for="item in gamelist"
+							:key="item.id"
+							href="#"
+							class="p-flex p-flex-dir-col p-flex-center game-item"
 						>
 							<div
 								class="game-img"
-								style="
-									background-image: url('https://img3.tuwandata.com/uploads/play2/banner/1782141619091963.png');
-								"
+								:style="{ backgroundImage: 'url(' + item.src + ')' }"
 							></div>
-							<div class="game-name">在线LOL</div>
-						</a>
-
-						<a
-							href="https://y.tuwan.com/roomlist?navid=9"
-							target="_blank"
-							class="game-item p-flex p-flex-dir-col p-flex-center"
-							data-navid="9"
-						>
-							<div
-								class="game-img"
-								style="
-									background-image: url('https://img3.tuwandata.com/uploads/play2/banner/1175091619093368.png');
-								"
-							></div>
-							<div class="game-name">王者荣耀</div>
-						</a>
-
-						<a
-							href="https://y.tuwan.com/roomlist?navid=13"
-							target="_blank"
-							class="game-item p-flex p-flex-dir-col p-flex-center"
-							data-navid="13"
-						>
-							<div
-								class="game-img"
-								style="
-									background-image: url('https://img3.tuwandata.com/uploads/play2/banner/6931001627265307.png');
-								"
-							></div>
-							<div class="game-name">永劫</div>
-						</a>
-
-						<a
-							href="https://y.tuwan.com/roomlist?navid=11"
-							target="_blank"
-							class="game-item p-flex p-flex-dir-col p-flex-center"
-							data-navid="11"
-						>
-							<div
-								class="game-img"
-								style="
-									background-image: url('https://img3.tuwandata.com/uploads/play2/banner/5353331619095885.png');
-								"
-							></div>
-							<div class="game-name">LOL手游</div>
-						</a>
-
-						<a
-							href="https://y.tuwan.com/roomlist?navid=12"
-							target="_blank"
-							class="game-item p-flex p-flex-dir-col p-flex-center"
-							data-navid="12"
-						>
-							<div
-								class="game-img"
-								style="
-									background-image: url('https://img3.tuwandata.com/uploads/play2/banner/1389341619401234.png');
-								"
-							></div>
-							<div class="game-name">狼人杀</div>
-						</a>
-
-						<a
-							href="https://y.tuwan.com/roomlist?navid=3"
-							target="_blank"
-							class="game-item p-flex p-flex-dir-col p-flex-center"
-							data-navid="3"
-						>
-							<div
-								class="game-img"
-								style="
-									background-image: url('https://img3.tuwandata.com/uploads/play2/banner/6883531619091181.png');
-								"
-							></div>
-							<div class="game-name">听歌</div>
+							<div class="game-name">{{ item.name }}</div>
 						</a>
 					</div>
 				</div>
@@ -141,6 +66,67 @@
 						</el-carousel>
 					</div>
 				</div>
+			</div>
+			<!--开黑栏目、标签-->
+			<div class="p-flex p-width-100 p-flex-ac">
+				<div class="p-flex p-flex-ac index-content-block-tags">
+					<div
+						class="index-content-block-title gameicon"
+						style="
+							background-image: url('https://img3.tuwandata.com/uploads/repayment/20210422/20210422_1619099029_83253.png');
+						"
+					>
+						免费开黑
+					</div>
+					<div class="index-content-block-tags p-flex p-flex-ac">
+						<div
+							v-for="item in tagsList"
+							:key="item.id"
+							:class="item.tagsClass"
+							@click="handlertagclass(item)"
+						>
+							{{ item.name }}
+						</div>
+					</div>
+					<a
+						class="index-content-block-more"
+						href="https://y.tuwan.com/chatroom/32820?r=20201125"
+						target="_blank"
+						>更多</a
+					>
+				</div>
+			</div>
+			<div class="p-flex index-content-block-roomlist">
+				<a
+					v-for="(item, index) in 10"
+					:key="index"
+					class="room-item"
+					@click="handlertoRoom($event)"
+				>
+					<div class="room-item-voicewave"></div>
+					<div class="room-item-cover">
+						<el-image
+							src="https://img3.tuwandata.com/uploads/chatroom/20221009/1386971665278402.jpg"
+						/>
+					</div>
+					<div class="room-item-info">
+						<div class="room-item-info-roomname p-text-over">LOLฅ猫咖馆ฅ</div>
+						<div class="p-flex p-flex-ac">
+							<el-image
+								class="fl room-item-info-avatar"
+								src="https://ucavatar3.tuwan.com/data/avatar/004/57/71/87_avatar_middle.jpg?random=20230903&x-oss-process=image/resize,m_fill,h_120,w_120"
+							></el-image>
+							<div class="fl p-text-over room-item-info-hostname">
+								ℒucky▸公主
+							</div>
+							<el-image
+								class="fl room-item-info-chatgif"
+								src="https://res.tuwan.com/templet/play/index/images/chat.gif"
+							/>
+							<div class="fr room-item-info-num">82人</div>
+						</div>
+					</div>
+				</a>
 			</div>
 		</div>
 	</div>
@@ -167,8 +153,82 @@ const swiperList = ref([
 	},
 ])
 
+const gamelist = ref([
+	{
+		id: 1,
+		name: '在线LOL',
+		src: 'https://img3.tuwandata.com/uploads/play2/banner/1782141619091963.png',
+	},
+	{
+		id: 2,
+		name: '王者荣耀',
+		src: 'https://img3.tuwandata.com/uploads/play2/banner/1175091619093368.png',
+	},
+	{
+		id: 3,
+		name: '永劫',
+		src: 'https://img3.tuwandata.com/uploads/play2/banner/6931001627265307.png',
+	},
+	{
+		id: 4,
+		name: 'LOL手游',
+		src: 'https://img3.tuwandata.com/uploads/play2/banner/5353331619095885.png',
+	},
+	{
+		id: 5,
+		name: '狼人杀',
+		src: 'https://img3.tuwandata.com/uploads/play2/banner/1389341619401234.png',
+	},
+	{
+		id: 6,
+		name: '听歌',
+		src: 'https://img3.tuwandata.com/uploads/play2/banner/6883531619091181.png',
+	},
+])
+
+const tagsclass = ref('tag p-flex p-flex-center')
+const tagsclass_active = ref('tag p-flex p-flex-center active')
+
+const tagsList = ref([
+	{
+		id: 1,
+		name: '热门',
+		tagsClass: tagsclass_active.value,
+	},
+	{
+		id: 2,
+		name: '在线LOL',
+		tagsClass: tagsclass.value,
+	},
+	{
+		id: 3,
+		name: '绝地求生',
+		tagsClass: tagsclass.value,
+	},
+	{
+		id: 4,
+		name: '永劫',
+		tagsClass: tagsclass.value,
+	},
+])
+
+// const activeName = ref('first')
+
+const handlertagclass = (item) => {
+	// console.log(item)
+	tagsList.value.forEach((item) => {
+		item.tagsClass = tagsclass.value
+	})
+	item.tagsClass = tagsclass_active.value
+	// tagsList.value
+}
+
 const testhandler = (id) => {
 	console.log(id)
+}
+
+const handlertoRoom = (e) => {
+	console.log(e)
 }
 </script>
 <style scoped lang="scss">
@@ -270,19 +330,171 @@ const testhandler = (id) => {
 	text-align: center;
 }
 
-//.el-carousel__item h3 {
-//	color: #475669;
-//	opacity: 0.75;
-//	line-height: 200px;
-//	margin: 0;
-//	text-align: center;
-//}
-//
-//.el-carousel__item:nth-child(2n) {
-//	background-color: #99a9bf;
-//}
-//
-//.el-carousel__item:nth-child(2n + 1) {
-//	background-color: #d3dce6;
-//}
+.index-content-block-title.gameicon {
+	background-position: 0;
+	background-repeat: no-repeat;
+	background-size: 40px auto;
+	padding-left: 51px;
+	border-left: none;
+	font-size: 24px;
+	color: #333;
+}
+
+.index-content-block-title {
+	font-size: 22px;
+	color: #6a6a6a;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 8px;
+	border-left: 6px solid #fa6544;
+	white-space: nowrap;
+}
+
+.index-content-block-tags {
+	width: 100%;
+}
+
+.index-content-block-tags .tag {
+	padding: 0 14px;
+	height: 26px;
+	color: #6a6a6a;
+	border: 1px solid #dadada;
+	border-radius: 13px;
+	cursor: pointer;
+	font-size: 16px;
+	margin-left: 17px;
+	white-space: nowrap;
+}
+
+.index-content-block-tags .tag.active,
+.index-content-block-tags .tag:hover {
+	color: #fa6544;
+	border: 1px solid #fa6544;
+}
+
+.index-content-block-more,
+.index-content-block-refresh {
+	font-size: 16px;
+	font-weight: 400;
+	cursor: pointer;
+	margin-left: auto;
+	display: block;
+}
+
+.index-content-block-more {
+	padding-right: 12px;
+	height: 26px;
+	background: url(https://res.tuwan.com/templet/play/index/images/right_arrow_ygb.png)
+		no-repeat 100%;
+	line-height: 26px;
+	color: #666;
+	flex-shrink: 0;
+}
+
+.index-content-block-roomlist {
+	flex-wrap: wrap;
+}
+
+.room-item {
+	width: 220px;
+	margin-top: 20px;
+	margin-right: auto;
+	cursor: pointer;
+	display: block;
+	position: relative;
+	background: #fff;
+	border-radius: 5px;
+	overflow: hidden;
+	transition: all 0.3s ease; //浮动过程所需要的时间
+}
+
+.room-item:hover {
+	width: 220px;
+	margin-top: 20px;
+	margin-right: auto;
+	cursor: pointer;
+	display: block;
+	position: relative;
+	background: #fff;
+	border-radius: 5px;
+	overflow: hidden;
+	transform: translate(0, -10px); //向上浮动
+}
+
+.room-item-voicewave {
+	width: 220px;
+	height: 186px;
+	position: absolute;
+	z-index: 2;
+}
+
+.room-item-voicewave:hover {
+	width: 220px;
+	height: 186px;
+	background-image: url(https://res.tuwan.com/templet/play/index/images/voicewave.gif?v=1);
+	background-position: 50%;
+	background-repeat: no-repeat;
+	background-color: rgba(51, 51, 51, 0.2);
+	background-size: 100% 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 2;
+}
+
+.room-item-cover {
+	width: 100%;
+	background: #fbfbfb;
+}
+
+.room-item-info {
+	color: #999;
+	font-size: 14px;
+	padding: 10px 12px;
+}
+.room-item-info-roomname {
+	color: #333;
+	font-size: 16px;
+	height: 16px;
+	line-height: 16px;
+	margin-bottom: 6px;
+}
+
+.p-text-over {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.room-item-info-avatar {
+	width: 24px;
+	height: 24px;
+	border-radius: 100%;
+}
+
+.room-item-info-hostname {
+	margin-left: 7px;
+	height: 14px;
+	line-height: 14px;
+}
+
+.p-text-over {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.room-item-info-chatgif {
+	width: 10px;
+	height: 10px;
+	margin-left: 5px;
+}
+
+.room-item-info-num {
+	margin-left: auto;
+	height: 14px;
+	line-height: 14px;
+	white-space: nowrap;
+	width: max-content;
+}
 </style>
