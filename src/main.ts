@@ -5,6 +5,7 @@ import 'virtual:unocss-devtools'
 
 // 你自定义的 css
 import './styles/main.css'
+import './styles/element-ui.scss'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import App from './App.vue'
 

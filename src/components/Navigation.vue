@@ -31,6 +31,8 @@ const active = ref('0')
 const msg = ref('')
 
 const roomeFlag = ref(false)
+const loginFlag = ref(false)
+const userInfoVisible = ref(false)
 const handleRoomeEnter = () => {
 	roomeFlag.value = true
 }
@@ -38,19 +40,42 @@ const handleRoomeEnter = () => {
 const handleRoomeLeave = () => {
 	roomeFlag.value = false
 }
+
+const handleLoginEnter = () => {
+	loginFlag.value = true
+}
+
+const handleLoginLeave = () => {
+	loginFlag.value = false
+}
+
+const loginDialogVisible = ref(false)
+const handleLogin = () => {
+	loginDialogVisible.value = true
+}
+
+const callback = (value) => {
+	// console.log(value)
+	loginDialogVisible.value = value
+}
 </script>
 
 <template>
 	<div class="header">
+		<!--夜间模式切换-->
 		<div class="header-switch">
 			<SwitchIcon unmount-persets />
 		</div>
+
+		<!--logo-->
 		<div class="header-logo">
 			<el-image
 				style="width: 188px; height: 49px"
 				src="https://res.tuwan.com/templet/play/index/images/yuewanlogo3.png"
 			></el-image>
 		</div>
+
+		<!--菜单部分-->
 		<div class="header-navtabs">
 			<el-menu
 				:default-active="active"
@@ -70,6 +95,7 @@ const handleRoomeLeave = () => {
 				</el-menu-item>
 			</el-menu>
 		</div>
+		<!--搜索部分-->
 		<div class="header-searchbox">
 			<el-input
 				v-model="msg"
@@ -79,6 +105,8 @@ const handleRoomeLeave = () => {
 				placeholder="搜索房间/用户昵称"
 			></el-input>
 		</div>
+
+		<!--大厅部分-->
 		<div class="header-iconbtns">
 			<div
 				class="header-iconbtns-iconbtn header-iconbtns-chatroom"
@@ -124,22 +152,78 @@ const handleRoomeLeave = () => {
 					</el-card>
 				</div>
 			</div>
+
+			<div class="divider">
+				<el-divider direction="vertical" />
+			</div>
+
+			<!--消息部分-->
 			<div class="header-iconbtns-iconbtn header-iconbtns-msg">
 				<span>消息</span>
 			</div>
-			<div class="header-iconbtns-iconbtn header-iconbtns-login">
+			<div class="divider">
+				<el-divider direction="vertical" />
+			</div>
+
+			<!--等待登录部分-->
+			<div
+				v-if="!userInfoVisible"
+				class="header-iconbtns-iconbtn header-iconbtns-login"
+				@mouseenter="handleLoginEnter"
+				@mouseleave="handleLoginLeave"
+				@click="handleLogin"
+			>
 				<span>{{ t('Registration/Login') }}</span>
-				<div v-if="true" class="login-box">
+				<div v-if="loginFlag" class="login-box">
 					<el-card>
-						<el-text class="font-bold" style="text-align: left"
-							>登录后可享受：</el-text
+						<div style="text-align: left; overflow: hidden">
+							<el-text class="block font-bold">登录后可享受：</el-text>
+							<el-text class="block">
+								<el-icon><Box /></el-icon>
+								超值大礼包
+							</el-text>
+							<el-text class="block">
+								<el-icon><Goblet /></el-icon>
+								超值大礼包
+							</el-text>
+						</div>
+						<div
+							style="display: flex; justify-content: center; margin-top: 15px"
 						>
+							<el-button type="success">登录</el-button>
+						</div>
 					</el-card>
 				</div>
 			</div>
-			<Dropdown />
+
+			<!--登录后用户头像部分-->
+			<div v-if="userInfoVisible" class="header-iconbtns-logininfo">
+				<div class="usermenu">
+					<el-row>
+						<el-col :span="8">
+							<a href="#">
+								<div class="usermenu-info-avatar">
+									<el-avatar
+										src="https://ucavatar2.tuwan.com/data/avatar/003/92/42/30_avatar_middle.jpg?random=20230911"
+									></el-avatar>
+								</div>
+							</a>
+						</el-col>
+						<el-col :span="16">
+							<div class="usermenu-info-username">
+								<span class="nickname">恰恰王ބ</span>
+								<div class="rank" />
+							</div>
+							<div class="usermenu-info-uid">UID:3924230</div>
+						</el-col>
+					</el-row>
+				</div>
+			</div>
 		</div>
+		<!--语言切换-->
+		<Dropdown />
 	</div>
+	<Login :visibale="loginDialogVisible" @change-value="callback" />
 </template>
 
 <style scoped lang="scss">
@@ -174,6 +258,11 @@ const handleRoomeLeave = () => {
 	margin-top: 10px;
 	text-align: center;
 	display: flex;
+
+	.divider {
+		display: flex;
+		align-items: center;
+	}
 
 	.header-switch {
 		display: flex;
@@ -299,6 +388,56 @@ const handleRoomeLeave = () => {
 			z-index: 10;
 			padding-top: 35px;
 			left: -69px;
+			text-align: left;
+		}
+
+		.header-iconbtns-logininfo {
+			margin: 0 20px;
+			display: flex;
+			align-items: center;
+
+			.usermenu {
+				//display: flex;
+				width: 162px;
+
+				.usermenu-info-username {
+					display: flex;
+					text-align: left;
+					align-items: center;
+				}
+
+				.nickname {
+					width: 60px;
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					font-size: 16px;
+					line-height: 18px;
+					color: #333;
+				}
+
+				.rank {
+					margin-left: 5px;
+					background-image: url(https://res.tuwan.com/templet/play/public/images/2.png);
+					background-repeat: no-repeat;
+					background-size: 40px;
+					background-position: 50%;
+					width: 40px;
+					height: 18px;
+				}
+
+				.usermenu-info-uid {
+					background-image: url(https://res.tuwan.com/templet/play/public/images/common_bottom.png);
+					background-repeat: no-repeat;
+					background-size: 8px 5px;
+					background-position: 100%;
+					padding-right: 13px;
+					color: #666;
+					font-size: 13px;
+					margin-top: auto;
+					width: max-content;
+				}
+			}
 		}
 	}
 }
