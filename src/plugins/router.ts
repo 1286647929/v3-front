@@ -8,6 +8,7 @@ declare module 'vue-router' {
 	interface RouteMeta {
 		title?: string
 		layout?: string
+		isShow?: boolean
 	}
 }
 

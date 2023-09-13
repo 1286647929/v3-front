@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { LoginData } from '@/api/types'
+// import ElFormRules from '../../presets/types/element'
 
 const props = defineProps({
 	visibale: Boolean,
@@ -10,14 +11,13 @@ const emits = defineEmits(['changeValue'])
 const handleChange = () => {
 	emits('changeValue', false)
 }
+
 const loginForm = ref<LoginData>({
 	phone: '',
 	code: '',
 	rememberMe: false,
 	uuid: '',
 })
-
-import ElFormRules from '../../presets/types/element'
 
 const loginRules: ElFormRules = {
 	phone: [

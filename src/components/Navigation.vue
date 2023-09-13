@@ -9,7 +9,12 @@ const { t } = useI18n()
  * 获取路由
  */
 const routes = getRoutes()
-	.filter((r) => !r.path.includes('notFound'))
+	.filter((r) => {
+		return !r.path.match(/notFound|test/)
+	})
+	.filter((r) => {
+		return !(!r.meta.isShow && r.meta.isShow != null)
+	})
 	.map((r) => {
 		let { path, name } = r
 		if (path === '/') {
@@ -22,6 +27,7 @@ const routes = getRoutes()
 
 		return { path, name: name.toString().slice(1).replaceAll('/', ' · ') }
 	})
+
 const handleSelect = (key: string, keyPath: string[]) => {
 	console.log(key, keyPath)
 }
@@ -145,8 +151,8 @@ const callback = (value) => {
 										line-height: 24px;
 										width: 130px;
 									"
-									>更多{{ i }}</el-button
-								>
+									>更多{{ i }}
+								</el-button>
 							</el-col>
 						</el-row>
 					</el-card>
@@ -179,11 +185,15 @@ const callback = (value) => {
 						<div style="text-align: left; overflow: hidden">
 							<el-text class="block font-bold">登录后可享受：</el-text>
 							<el-text class="block">
-								<el-icon><Box /></el-icon>
+								<el-icon>
+									<Box />
+								</el-icon>
 								超值大礼包
 							</el-text>
 							<el-text class="block">
-								<el-icon><Goblet /></el-icon>
+								<el-icon>
+									<Goblet />
+								</el-icon>
 								超值大礼包
 							</el-text>
 						</div>
