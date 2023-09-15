@@ -60,6 +60,11 @@ const option = ref({
 		},
 	],
 })
+
+const emits = defineEmits(['handleChange'])
+onMounted(() => {
+	emits('handleChange', true)
+})
 </script>
 
 <template>

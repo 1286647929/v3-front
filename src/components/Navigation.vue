@@ -64,6 +64,11 @@ const callback = (value) => {
 	// console.log(value)
 	loginDialogVisible.value = value
 }
+
+const emits = defineEmits(['handleChange'])
+onMounted(() => {
+	emits('handleChange', true)
+})
 </script>
 
 <template>
@@ -251,6 +256,11 @@ const callback = (value) => {
 	width: 20px;
 	margin-left: 25px;
 	font-size: 18px;
+	border: none;
+}
+
+.el-menu {
+	border: none;
 }
 
 .el-menu-item:hover {

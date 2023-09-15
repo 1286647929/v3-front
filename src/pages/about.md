@@ -4,6 +4,11 @@
 
 ```js
 console.log("hello");
+
+const emits = defineEmits(['handleChange'])
+onMounted(()=>{
+	emits('handleChange',true)
+})
 ```
 
 <br />
