@@ -27,16 +27,16 @@
   "engines": {
     "node": ">=v18.17.1"
   },
-  "packageManager": "pnpm@8.7.4",
+  "packageManager": "pnpm@8.7.6",
   "devDependencies": {
-    "@intlify/unplugin-vue-i18n": "^1.0.1",
+    "@intlify/unplugin-vue-i18n": "^1.2.0",
     "@types/ityped": "^1.0.1",
-    "@types/node": "^18.17.15",
-    "@typescript-eslint/parser": "^6.6.0",
-    "@unocss/eslint-config": "^0.55.7",
-    "@unocss/reset": "^0.55.7",
-    "@unocss/transformer-directives": "^0.55.7",
-    "@unocss/transformer-variant-group": "^0.55.7",
+    "@types/node": "^18.17.18",
+    "@typescript-eslint/parser": "^6.7.2",
+    "@unocss/eslint-config": "^0.56.0",
+    "@unocss/reset": "^0.56.0",
+    "@unocss/transformer-directives": "^0.56.0",
+    "@unocss/transformer-variant-group": "^0.56.0",
     "@vitejs/plugin-legacy": "^4.1.1",
     "@vitejs/plugin-vue": "^4.3.4",
     "@vitejs/plugin-vue-jsx": "^3.0.2",
@@ -55,7 +55,7 @@
     "eslint-plugin-vue": "^9.17.0",
     "husky": "^8.0.3",
     "ityped": "^1.0.3",
-    "lightningcss": "^1.21.7",
+    "lightningcss": "^1.22.0",
     "lint-staged": "^14.0.1",
     "local-pkg": "^0.4.3",
     "markdown-it-prism": "^2.3.0",
@@ -67,11 +67,10 @@
     "plop": "^4.0.0",
     "prettier": "^3.0.3",
     "prism-theme-vars": "^0.2.4",
-    "sass": "^1.66.1",
     "taze": "^0.11.2",
-    "terser": "^5.19.4",
+    "terser": "^5.20.0",
     "typescript": "^5.2.2",
-    "unocss": "^0.55.7",
+    "unocss": "^0.56.0",
     "unplugin-auto-import": "^0.16.6",
     "unplugin-vue-components": "^0.25.2",
     "unplugin-vue-markdown": "^0.24.3",
@@ -83,14 +82,14 @@
     "vite-plugin-mock": "^2.9.8",
     "vite-plugin-removelog": "^0.2.1",
     "vite-plugin-use-modules": "^1.4.5",
-    "vite-plugin-vue-devtools": "1.0.0-rc.3",
+    "vite-plugin-vue-devtools": "1.0.0-rc.4",
     "vite-plugin-vue-meta-layouts": "^0.3.0",
     "vite-plugin-warmup": "^0.1.0",
     "vitest": "^0.34.4",
     "vue": "^3.3.4",
     "vue-dark-switch": "^1.0.5",
     "vue-echarts": "^6.6.1",
-    "vue-i18n": "^9.3.0",
+    "vue-i18n": "^9.4.1",
     "vue-request": "2.0.3",
     "vue-router": "^4.2.4",
     "vue-toastification": "2.0.0-rc.5"
@@ -107,33 +106,23 @@
     "array.prototype.flatmap": "npm:@nolyfill/array.prototype.flatmap@latest",
     "arraybuffer.prorotype.slice": "npm:@nolyfill/arraybuffer.prorotype.slice@latest",
     "function.prototype.name": "npm:@nolyfill/function.prototype.name@latest",
-    "has": "npm:@nolyfill/has@latest",
     "object-keys": "npm:@nolyfill/object-keys@latest",
     "object.assign": "npm:@nolyfill/object.assign@latest",
     "object.entries": "npm:@nolyfill/object.entries@latest",
     "object.fromentries": "npm:@nolyfill/object.fromentries@latest",
-    "object.values": "npm:@nolyfill/object.values@latest"
+    "object.values": "npm:@nolyfill/object.values@latest",
+    "has": "npm:@nolyfill/has@latest",
+    "is-regex": "npm:@nolyfill/is-regex@latest"
   },
   "repository": {
     "url": "https://github.com/dishait/tov-template"
   },
-  "dependencies": {
-    "@element-plus/icons-vue": "^2.1.0",
-    "element-plus": "^2.3.9",
-    "naive-ui": "^2.34.4"
-  },
-	"browserslist": [
-		">= 0.25%",
-		"last 2 versions",
-		"not dead",
-		"not ie <= 11",
-		"Android >= 4.0",
-		"iOS >= 8"
-	],
-  "pnpm": {
-    "overrides": {
-      "has": "npm:@nolyfill/has@latest",
-      "is-regex": "npm:@nolyfill/is-regex@latest"
-    }
-  }
+  "browserslist": [
+    ">= 0.25%",
+    "last 2 versions",
+    "not dead",
+    "not ie <= 11",
+    "Android >= 4.0",
+    "iOS >= 8"
+  ]
 }
