@@ -1,5 +1,5 @@
 <template>
-	<div class="p-flex p-width-100 p-flex-dir-col p-flex-ac index">
+	<div class="index p-flex p-width-100 p-flex-dir-col p-flex-ac">
 		<div class="index-content">
 			<!--			广告栏-->
 			<el-carousel
@@ -35,7 +35,7 @@
 							v-for="item in gamelist"
 							:key="item.id"
 							href="#"
-							class="p-flex p-flex-dir-col p-flex-center game-item"
+							class="p-flex p-flex-dir-col game-item p-flex-center"
 						>
 							<div
 								class="game-img"
@@ -101,7 +101,7 @@
 					v-for="(item, index) in 10"
 					:key="index"
 					class="room-item"
-					@click="handlertoRoom($event)"
+					@click="handlertoRoom(item)"
 				>
 					<div class="room-item-voicewave"></div>
 					<div class="room-item-cover">
@@ -134,6 +134,8 @@
 
 <script setup>
 // const { t } = useI18n()
+const router = useRouter()
+
 const swiperList = ref([
 	{
 		id: 1,
@@ -214,6 +216,10 @@ const tagsList = ref([
 
 // const activeName = ref('first')
 
+/**
+ * 切换标签颜色
+ * @param item
+ */
 const handlertagclass = (item) => {
 	// console.log(item)
 	tagsList.value.forEach((item) => {
@@ -227,8 +233,18 @@ const testhandler = (id) => {
 	console.log(id)
 }
 
-const handlertoRoom = (e) => {
-	console.log(e)
+/**
+ * 切换房间
+ * @param item
+ */
+const handlertoRoom = (item) => {
+	console.log(item)
+	router.push({
+		path: '/room',
+		query: {
+			id: item,
+		},
+	})
 }
 </script>
 <style scoped lang="scss">

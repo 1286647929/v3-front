@@ -2,8 +2,10 @@
 import { getRoutes } from '@/plugins/router'
 import { SwitchIcon } from 'vue-dark-switch'
 import { Search } from '@element-plus/icons-vue'
+// import {useRoute} from 'vue-router'
 
 const { t } = useI18n()
+// const route = useRoute()
 
 /**
  * 获取路由
@@ -28,10 +30,6 @@ const routes = getRoutes()
 		return { path, name: name.toString().slice(1).replaceAll('/', ' · ') }
 	})
 
-const handleSelect = (key: string, keyPath: string[]) => {
-	console.log(key, keyPath)
-}
-
 const active = ref('0')
 
 const msg = ref('')
@@ -55,7 +53,9 @@ const handleLoginLeave = () => {
 	loginFlag.value = false
 }
 
+//登录窗口visible
 const loginDialogVisible = ref(false)
+
 const handleLogin = () => {
 	loginDialogVisible.value = true
 }
@@ -79,12 +79,12 @@ onMounted(() => {
 		</div>
 
 		<!--logo-->
-		<div class="header-logo">
+		<a class="header-logo" href="/">
 			<el-image
 				style="width: 188px; height: 49px"
 				src="https://res.tuwan.com/templet/play/index/images/yuewanlogo3.png"
 			></el-image>
-		</div>
+		</a>
 
 		<!--菜单部分-->
 		<div class="header-navtabs">
@@ -93,7 +93,6 @@ onMounted(() => {
 				active-text-color="#fa6543"
 				mode="horizontal"
 				:router="true"
-				@select="handleSelect"
 			>
 				<el-menu-item
 					v-for="(r, index) of routes"
@@ -275,7 +274,7 @@ onMounted(() => {
 }
 
 .header {
-	margin-top: 10px;
+	padding-top: 10px;
 	text-align: center;
 	display: flex;
 
